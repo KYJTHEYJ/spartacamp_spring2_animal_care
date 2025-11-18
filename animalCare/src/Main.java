@@ -79,6 +79,12 @@ public class Main {
                 continue;
             }
 
+            if(inputAnimalAge <= 0) {
+                System.out.println("나이는 1살부터 입력해주세요");
+                sc.nextLine(); // 잘못된 입력 제거
+                continue;
+            }
+
             return inputAnimalAge;
         }
     }
@@ -275,8 +281,8 @@ public class Main {
                 )
         );
     }
-
     //endregion
+
     public static void main(String[] args) {
         int selectMenuNumber; // 메뉴 선택 번호
         String animalName; // 등록할 동물 이름
