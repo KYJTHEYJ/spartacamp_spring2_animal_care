@@ -36,6 +36,9 @@ public class Animal implements Zoo {
     public void eat() {
     }
 
+    public void showStatus() {
+    }
+
     protected void changeHappy(int happy) {
         this.happy += happy;
         if (this.happy < 0) this.happy = 0;

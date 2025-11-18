@@ -54,4 +54,17 @@ public class Dog extends Animal {
                 , getHungry()
         );
     }
+
+    @Override
+    public void showStatus() {
+        System.out.printf("""
+                        %s 의 상태에요!
+                        현재 행복도 : %d
+                        현재 배고픔 : %d
+                        """
+                , getName()
+                , getHappy()
+                , getHungry()
+        );
+    }
 }

@@ -172,15 +172,18 @@ public class Main {
             try {
                 selectNumber = sc.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("올바른 메뉴번호를 입력하셔야합니다");
+                System.out.println("올바른 동물 번호를 입력하셔야합니다");
                 sc.nextLine(); // 잘못된 입력 제거
                 continue;
             }
 
-            if (selectNumber > listedAnimals.size()) {
+            if (selectNumber > listedAnimals.size() || selectNumber == 0 || selectNumber < 0) {
                 System.out.println("리스트에 없는 번호입니다");
+                sc.nextLine(); // 잘못된 입력 제거
+                continue;
             }
 
+            sc.nextLine(); // 중간 버퍼 제거
             break;
         }
 
@@ -189,39 +192,64 @@ public class Main {
     //endregion
 
     //region "동물 울음 듣기"
-    public static void listenCry(List<Animal> listedAnimals, int index) {
+    public static void listenCry(List<Animal> listedAnimals, Scanner sc) {
+        int selectNumber;
+
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("울음 소리를 들을 동물을 선택하세요 :");
-        System.out.print(listedAnimals.get(index - 1).getName() + " : ");
-        listedAnimals.get(index - 1).cry();
+        selectNumber = selectListedAnimal(listedAnimals, sc);
+
+        System.out.print(listedAnimals.get(selectNumber - 1).getName() + " : ");
+        listedAnimals.get(selectNumber - 1).cry();
     }
     //endregion
 
     //region "놀아주기"
-    public static void play(List<Animal> listedAnimals, int index) {
+    public static void play(List<Animal> listedAnimals, Scanner sc) {
+        int selectNumber;
+
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("놀아줄 동물을 선택하세요 :");
-        listedAnimals.get(index - 1).play();
+        selectNumber = selectListedAnimal(listedAnimals, sc);
+        listedAnimals.get(selectNumber - 1).play();
     }
     //endregion
 
     //region "먹이주기"
-    public static void eat(List<Animal> listedAnimals, int index) {
+    public static void eat(List<Animal> listedAnimals, Scanner sc) {
+        int selectNumber;
+
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("먹이를 줄 동물을 선택하세요 :");
-        listedAnimals.get(index - 1).eat();
+        selectNumber = selectListedAnimal(listedAnimals, sc);
+        listedAnimals.get(selectNumber - 1).eat();
+    }
+    //endregion
+
+    //region "상태 보기"
+    public static void showStatus(List<Animal> listedAnimals, Scanner sc) {
+        int selectNumber;
+
+        if (listedAnimals.isEmpty()) {
+            System.out.println("등록된 동물이 없습니다");
+            return;
+        }
+
+        System.out.println("상태를 볼 동물을 선택하세요 :");
+        selectNumber = selectListedAnimal(listedAnimals, sc);
+        listedAnimals.get(selectNumber - 1).showStatus();
     }
     //endregion
 
@@ -276,17 +304,22 @@ public class Main {
 
                 // 놀아주기
                 case 3 -> {
-                    play(inputAnimalList, selectListedAnimal(inputAnimalList, sc));
+                    play(inputAnimalList, sc);
                 }
 
                 // 놀아주기
                 case 4 -> {
-                    eat(inputAnimalList, selectListedAnimal(inputAnimalList, sc));
+                    eat(inputAnimalList, sc);
+                }
+
+                // 상태 보기
+                case 5 -> {
+                    showStatus(inputAnimalList, sc);
                 }
 
                 // 울음소리 듣기
                 case 6 -> {
-                    listenCry(inputAnimalList, selectListedAnimal(inputAnimalList, sc));
+                    listenCry(inputAnimalList, sc);
                 }
 
                 // 종료
