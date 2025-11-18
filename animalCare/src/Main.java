@@ -1,10 +1,12 @@
 import java.util.*;
 
 public class Main {
+    //region "공통 변수"
     // 메뉴 선택 리스트
     static List<Integer> menuNumList = List.of(1, 2, 3, 4, 5, 6, 7);
     // 동물 종류 선택 리스트
     static HashMap<Integer, String> animalSpeciesNumList = new HashMap<>();
+    //endregion
 
     // region "메뉴 선택"
     // 메뉴 선택 기능
@@ -283,6 +285,7 @@ public class Main {
     }
     //endregion
 
+    //region "Main"
     public static void main(String[] args) {
         int selectMenuNumber; // 메뉴 선택 번호
         String animalName; // 등록할 동물 이름
@@ -336,4 +339,5 @@ public class Main {
             }
         }
     }
+    //endregion
 }
