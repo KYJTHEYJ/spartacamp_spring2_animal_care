@@ -20,8 +20,4 @@ public class Dog extends Animal {
     public ZooSpecies getSpecies() {
         return null;
     }
-
-    public void cry() {
-        System.out.println("[울기]");
-    }
 }

@@ -20,6 +20,4 @@ public class Bird extends Animal {
     public ZooSpecies getSpecies() {
         return null;
     }
-
-    public void cry() {}
 }

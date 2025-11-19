@@ -1,10 +1,13 @@
 package animals.species;
 
+import abilitys.Cryable;
 import animals.species.familys.Dog;
+import zoo.Food;
 import zoo.ZooSpecies;
 
-public class Wolf extends Dog {
-    private final String favoriteFood = "meat";
+public class Wolf extends Dog implements Cryable
+{
+    private final Food favoriteFood = Food.MEAT;
 
     public Wolf(String name, int age) {
         super(name, age);
@@ -19,7 +22,7 @@ public class Wolf extends Dog {
     }
 
     public String getFavoriteFood() {
-        return favoriteFood;
+        return favoriteFood.getKrName();
     }
 
     @Override

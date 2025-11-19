@@ -2,10 +2,11 @@ package animals.species;
 
 import abilitys.WaterShoot;
 import animals.species.familys.Mammal;
+import zoo.Food;
 import zoo.ZooSpecies;
 
 public class Elephant extends Mammal implements WaterShoot {
-    private final String favoriteFood = "plant";
+    private final Food favoriteFood = Food.PLANT;
 
     public Elephant(String name, int age) {
         super(name, age);
@@ -28,7 +29,7 @@ public class Elephant extends Mammal implements WaterShoot {
     }
 
     public String getFavoriteFood() {
-        return favoriteFood;
+        return favoriteFood.getKrName();
     }
 
     @Override

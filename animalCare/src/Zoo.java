@@ -1,7 +1,9 @@
+import abilitys.Cryable;
 import animals.species.*;
 import animals.species.familys.Animal;
 import animals.species.familys.Cat;
 import animals.species.familys.Dog;
+import zoo.ZooSpecies;
 
 import java.util.*;
 
@@ -89,7 +91,7 @@ public class Zoo {
                 continue;
             }
 
-            if(inputAnimalAge <= 0) {
+            if (inputAnimalAge <= 0) {
                 System.out.println("나이는 1살부터 입력해주세요");
                 sc.nextLine(); // 잘못된 입력 제거
                 continue;
@@ -139,7 +141,7 @@ public class Zoo {
         for (Animal animal : listedAnimalList) {
             if (animal.getName().equals(newAnimal.getName())
                     && animal.getAge() == newAnimal.getAge()
-                    && animal.getClass() == newAnimal.getClass()) {
+                    && animal.getSpecies() == newAnimal.getSpecies()) {
                 return false;
             }
         }
@@ -176,7 +178,7 @@ public class Zoo {
     //endregion
 
     //region "등록 동물 선택"
-    public static int selectListedAnimal(List<Animal> listedAnimals, Scanner sc) {
+    public static Animal selectListedAnimal(List<Animal> listedAnimals, Scanner sc) {
         int selectNumber;
 
         while (true) {
@@ -185,9 +187,10 @@ public class Zoo {
                 System.out.println("동물을 번호에 맞게 선택해주세요");
                 System.out.printf("""
                                 %d. %s (%s, %d살)
-                                """, listIndex + 1, animal.getName()
-                        , (animal instanceof Dog) ? "강아지" :
-                                (animal instanceof Cat) ? "고양이" : "불분명"
+                                """
+                        , listIndex + 1
+                        , animal.getName()
+                        , animal.getSpecies().getKrName()
                         , animal.getAge());
                 listIndex++;
             }
@@ -211,69 +214,102 @@ public class Zoo {
             break;
         }
 
+        return listedAnimals.get(selectNumber);
+    }
+
+    // 울 수 있는 동물들만 보여주기
+    public static int selectCryableListedAnimal(List<Animal> listedAnimals, Scanner sc) {
+        int selectNumber;
+        List<Animal> cryableAnimals = new ArrayList<>();
+
+        while (true) {
+            int listIndex = 0;
+            for (Animal animal : listedAnimals) {
+                if(animal instanceof Cryable) {
+                    cryableAnimals.add(animal);
+                    System.out.println("동물을 번호에 맞게 선택해주세요");
+                    System.out.printf("""
+                                    %d. %s (%s, %d살)
+                                    """
+                            , listIndex + 1
+                            , animal.getName()
+                            , animal.getSpecies().getKrName()
+                            , animal.getAge());
+                    listIndex++;
+                }
+            }
+            System.out.print("선택 : ");
+
+            try {
+                selectNumber = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("올바른 동물 번호를 입력하셔야합니다");
+                sc.nextLine(); // 잘못된 입력 제거
+                continue;
+            }
+
+            if (selectNumber > cryableAnimals.size() || selectNumber == 0 || selectNumber < 0) {
+                System.out.println("리스트에 없는 번호입니다");
+                sc.nextLine(); // 잘못된 입력 제거
+                continue;
+            }
+
+            sc.nextLine(); // 중간 버퍼 제거
+            break;
+        }
+
         return selectNumber;
     }
     //endregion
 
     //region "동물 울음 듣기"
     public static void listenCry(List<Animal> listedAnimals, Scanner sc) {
-        int selectNumber;
-
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("울음 소리를 들을 동물을 선택하세요 :");
-        selectNumber = selectListedAnimal(listedAnimals, sc);
+        Animal selectNumberAnimal = selectListedAnimal(listedAnimals, sc);
 
-        System.out.print(listedAnimals.get(selectNumber - 1).getName() + " : ");
-        listedAnimals.get(selectNumber - 1).eat();
+        System.out.print(selectNumberAnimal.getName() + " : ");
+        selectNumberAnimal.cry();
     }
     //endregion
 
     //region "놀아주기"
     public static void play(List<Animal> listedAnimals, Scanner sc) {
-        int selectNumber;
-
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("놀아줄 동물을 선택하세요 :");
-        selectNumber = selectListedAnimal(listedAnimals, sc);
-        listedAnimals.get(selectNumber - 1).eat();
+        selectListedAnimal(listedAnimals, sc).play();
     }
     //endregion
 
     //region "먹이주기"
     public static void eat(List<Animal> listedAnimals, Scanner sc) {
-        int selectNumber;
-
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("먹이를 줄 동물을 선택하세요 :");
-        selectNumber = selectListedAnimal(listedAnimals, sc);
-        listedAnimals.get(selectNumber - 1).eat();
+        selectListedAnimal(listedAnimals, sc).eat();
     }
     //endregion
 
     //region "상태 보기"
     public static void showStatus(List<Animal> listedAnimals, Scanner sc) {
-        int selectNumber;
-
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
         }
 
         System.out.println("상태를 볼 동물을 선택하세요 :");
-        selectNumber = selectListedAnimal(listedAnimals, sc);
-        listedAnimals.get(selectNumber - 1).showStatus();
+        selectListedAnimal(listedAnimals, sc).showStatus();
     }
     //endregion
 
@@ -294,8 +330,7 @@ public class Zoo {
                                 """,
                         animal.getName(),
                         animal.getAge(),
-                        (animal instanceof Dog) ? "강아지" :
-                                (animal instanceof Cat) ? "고양이" : "불분명"
+                        animal.getSpecies().getKrName()
                 )
         );
     }

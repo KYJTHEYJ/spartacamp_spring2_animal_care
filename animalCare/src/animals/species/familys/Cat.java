@@ -21,6 +21,4 @@ public class Cat extends Animal {
         return null;
     }
 
-    public void cry() {}
-
 }

@@ -1,13 +1,13 @@
 package animals.species;
 
+import abilitys.Cryable;
 import abilitys.Flyable;
 import animals.species.familys.Bird;
+import zoo.Food;
 import zoo.ZooSpecies;
 
-public class Eagle extends Bird implements Flyable {
-    private int happy = 50;
-    private int hungry = 0;
-    private final String favoriteFood = "meat";
+public class Eagle extends Bird implements Flyable, Cryable {
+    private final Food favoriteFood = Food.MEAT;
 
     public Eagle(String name, int age) {
         super(name, age);
@@ -22,7 +22,7 @@ public class Eagle extends Bird implements Flyable {
     }
 
     public String getFavoriteFood() {
-        return favoriteFood;
+        return favoriteFood.getKrName();
     }
 
     @Override
@@ -33,6 +33,11 @@ public class Eagle extends Bird implements Flyable {
     @Override
     public void fly() {
         System.out.println("독수리의 빠른 비행을 보여요!");
+    }
+
+    @Override
+    public void cry() {
+        System.out.println("끼악!");
     }
 
     @Override

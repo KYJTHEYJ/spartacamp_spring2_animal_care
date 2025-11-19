@@ -2,10 +2,11 @@ package animals.species;
 
 import abilitys.Swimmable;
 import animals.species.familys.Bird;
+import zoo.Food;
 import zoo.ZooSpecies;
 
 public class Penguin extends Bird implements Swimmable {
-    private final String favoriteFood = "fish";
+    private final Food favoriteFood = Food.FISH;
 
     public Penguin(String name, int age) {
         super(name, age);
@@ -20,7 +21,7 @@ public class Penguin extends Bird implements Swimmable {
     }
 
     public String getFavoriteFood() {
-        return favoriteFood;
+        return favoriteFood.getKrName();
     }
 
     @Override
