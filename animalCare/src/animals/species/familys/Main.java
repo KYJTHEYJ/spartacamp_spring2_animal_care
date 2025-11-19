@@ -1,3 +1,5 @@
+package animals.species.familys;
+
 import java.util.*;
 
 public class Main {
@@ -285,7 +287,7 @@ public class Main {
     }
     //endregion
 
-    //region "Main"
+    //region "animals.species.familys.Main"
     public static void main(String[] args) {
         int selectMenuNumber; // 메뉴 선택 번호
         String animalName; // 등록할 동물 이름

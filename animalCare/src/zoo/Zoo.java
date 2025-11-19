@@ -1,3 +1,5 @@
+package zoo;
+
 public interface Zoo {
     void eat();
     void play();

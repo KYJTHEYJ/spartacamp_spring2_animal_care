@@ -1,6 +1,14 @@
-public class Cat extends Animal implements Zoo {
+package animals.species.familys;
+
+import zoo.Zoo;
+
+public class Mammal extends Animal implements Zoo {
     private int happy;
     private int hungry;
+
+    public Mammal(String name, int age) {
+        super(name, age);
+    }
 
     public int getHappy() {
         return happy;
@@ -10,24 +18,20 @@ public class Cat extends Animal implements Zoo {
         return hungry;
     }
 
-    public Cat(String name, int age) {
-        super(name, age);
-    }
-
     @Override
     public void cry() {
-        System.out.println("미야옹!");
+        System.out.println("[포유류과 울음소리]");
     }
 
     public void eat() {
-        int hugry = -20;
+        int hungry = -10;
 
         if (getHungry() == 0) {
             System.out.printf("%s 는 배고프지 않아졌어요!\n", getName());
             return;
         }
 
-        changeHungry(hugry);
+        changeHungry(hungry);
 
         System.out.printf("""
                         %s 가 밥을 먹었어요!
@@ -35,13 +39,13 @@ public class Cat extends Animal implements Zoo {
                         현재 배고픔 수치 : %d
                         """
                 , getName()
-                , hugry * -1
+                , hungry * -1
                 , getHungry());
     }
 
     @Override
     public void play() {
-        int happy = 20;
+        int happy = 10;
 
         if(getHungry() >= 100) {
             System.out.printf("%s 는 배가 고파 놀 수 없어요!\n", getName());

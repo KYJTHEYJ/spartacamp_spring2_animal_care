@@ -1,3 +1,7 @@
+package animals.species.familys;
+
+import zoo.Zoo;
+
 public abstract class Animal implements Zoo {
     private final String name;
     private final int age;
