@@ -1,9 +1,6 @@
 import abilitys.Cryable;
 import animals.species.*;
 import animals.species.familys.Animal;
-import animals.species.familys.Cat;
-import animals.species.familys.Dog;
-import zoo.ZooSpecies;
 
 import java.util.*;
 
@@ -218,9 +215,9 @@ public class Zoo {
     }
 
     // 울 수 있는 동물들만 보여주기
-    public static int selectCryableListedAnimal(List<Animal> listedAnimals, Scanner sc) {
+    public static Animal selectCryableListedAnimal(List<Animal> listedAnimals, Scanner sc) {
         int selectNumber;
-        List<Animal> cryableAnimals = new ArrayList<>();
+        List<Animal> cryAbleAnimals = new ArrayList<>();
 
         while (true) {
             int listIndex = 0;
@@ -258,7 +255,7 @@ public class Zoo {
             break;
         }
 
-        return selectNumber;
+        return cryableAnimals.get(selectNumber);
     }
     //endregion
 
@@ -270,10 +267,10 @@ public class Zoo {
         }
 
         System.out.println("울음 소리를 들을 동물을 선택하세요 :");
-        Animal selectNumberAnimal = selectListedAnimal(listedAnimals, sc);
 
-        System.out.print(selectNumberAnimal.getName() + " : ");
-        selectNumberAnimal.cry();
+        System.out.print(selectCryableListedAnimal(listedAnimals, sc).getName() + " : ");
+        Cryable cryable = (Cryable) selectCryableListedAnimal(listedAnimals, sc);
+        cryable.cry();
     }
     //endregion
 
@@ -290,7 +287,9 @@ public class Zoo {
     //endregion
 
     //region "먹이주기"
+    //TODO : 올바른 먹이를 주도록 코드 개선 필요
     public static void eat(List<Animal> listedAnimals, Scanner sc) {
+        /*
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");
             return;
@@ -298,6 +297,7 @@ public class Zoo {
 
         System.out.println("먹이를 줄 동물을 선택하세요 :");
         selectListedAnimal(listedAnimals, sc).eat();
+        */
     }
     //endregion
 
