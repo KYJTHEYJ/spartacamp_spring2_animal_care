@@ -10,14 +10,14 @@ public class Dog extends Animal {
     }
 
     public void eat() {
-        int hugry = -10;
+        int hungry = -10;
 
         if (getHungry() == 0) {
             System.out.printf("%s 는 배고프지 않아졌어요!\n", getName());
             return;
         }
 
-        changeHungry(hugry);
+        changeHungry(hungry);
 
         System.out.printf("""
                         %s 가 밥을 먹었어요!
@@ -25,7 +25,7 @@ public class Dog extends Animal {
                         현재 배고픔 수치 : %d
                         """
                 , getName()
-                , hugry * -1
+                , hungry * -1
                 , getHungry());
     }
 
