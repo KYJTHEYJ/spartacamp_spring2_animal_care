@@ -1,11 +1,15 @@
-package animals.species.familys;
+import animals.species.*;
+import animals.species.familys.Animal;
+import animals.species.familys.Cat;
+import animals.species.familys.Dog;
 
 import java.util.*;
 
-public class Main {
+// TODO : 종과 하위분류가 추가 되었되면 취급하는 동물과 먹이를 Zoo의 enum 클래스(Food, ZooSpecies) 내부에 추가할 것
+public class Zoo {
     //region "공통 변수"
     // 메뉴 선택 리스트
-    static List<Integer> menuNumList = List.of(1, 2, 3, 4, 5, 6, 7);
+    static List<Integer> menuNumList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
     // 동물 종류 선택 리스트
     static HashMap<Integer, String> animalSpeciesNumList = new HashMap<>();
     //endregion
@@ -17,14 +21,16 @@ public class Main {
 
         while (true) {
             System.out.print("""
-                    === 동물원 관리 시스템 ===
+                    === 확장된 동물원 관리 시스템 ===
                     1. 동물 등록
                     2. 동물 목록 보기
                     3. 동물과 놀기
                     4. 먹이주기
-                    5. 동물 상태 확인
-                    6. 울음소리 듣기
-                    7. 종료
+                    5. 특별 능력 사용
+                    6. 동물 상태 확인
+                    7. 사육사 관리
+                    8. 울음소리 듣기
+                    9. 종료
                     """);
             System.out.print("메뉴를 선택하세요 : ");
 
@@ -96,8 +102,12 @@ public class Main {
     // 보유가능한 동물 종 입력 및 체크
     public static int inputAnimalSpecies(Scanner sc) {
         animalSpeciesNumList.clear();
-        animalSpeciesNumList.put(1, "강아지");
-        animalSpeciesNumList.put(2, "고양이");
+        animalSpeciesNumList.put(1, "악어");
+        animalSpeciesNumList.put(2, "독수리");
+        animalSpeciesNumList.put(3, "코끼리");
+        animalSpeciesNumList.put(4, "사자");
+        animalSpeciesNumList.put(5, "펭귄");
+        animalSpeciesNumList.put(6, "늑대");
 
         int inputAnimalSpeciesNumber;
         while (true) {
@@ -141,8 +151,12 @@ public class Main {
     public static void inputAnimalList(String animalName, int animalAge, int animalSpecies, List<Animal> listedAnimals) {
         // 동물 등록
         Animal newAnimal = switch (animalSpecies) {
-            case 1 -> new Dog(animalName, animalAge);
-            case 2 -> new Cat(animalName, animalAge);
+            case 1 -> new Crocodile(animalName, animalAge);
+            case 2 -> new Eagle(animalName, animalAge);
+            case 3 -> new Elephant(animalName, animalAge);
+            case 4 -> new Lion(animalName, animalAge);
+            case 5 -> new Penguin(animalName, animalAge);
+            case 6 -> new Wolf(animalName, animalAge);
             default -> null;
         };
 
@@ -214,7 +228,7 @@ public class Main {
         selectNumber = selectListedAnimal(listedAnimals, sc);
 
         System.out.print(listedAnimals.get(selectNumber - 1).getName() + " : ");
-        listedAnimals.get(selectNumber - 1).cry();
+        listedAnimals.get(selectNumber - 1).eat();
     }
     //endregion
 
@@ -229,7 +243,7 @@ public class Main {
 
         System.out.println("놀아줄 동물을 선택하세요 :");
         selectNumber = selectListedAnimal(listedAnimals, sc);
-        listedAnimals.get(selectNumber - 1).play();
+        listedAnimals.get(selectNumber - 1).eat();
     }
     //endregion
 
@@ -287,7 +301,7 @@ public class Main {
     }
     //endregion
 
-    //region "animals.species.familys.Main"
+    //region "Main"
     public static void main(String[] args) {
         int selectMenuNumber; // 메뉴 선택 번호
         String animalName; // 등록할 동물 이름
@@ -318,7 +332,7 @@ public class Main {
                     play(inputAnimalList, sc);
                 }
 
-                // 놀아주기
+                // 먹이주기
                 case 4 -> {
                     eat(inputAnimalList, sc);
                 }
