@@ -1,7 +1,17 @@
-public class Dog extends Animal {
+public class Dog extends Animal implements Zoo {
+    private int happy;
+    private int hungry;
 
     public Dog(String name, int age) {
         super(name, age);
+    }
+
+    public int getHappy() {
+        return happy;
+    }
+
+    public int getHungry() {
+        return hungry;
     }
 
     @Override
@@ -10,14 +20,14 @@ public class Dog extends Animal {
     }
 
     public void eat() {
-        int hugry = -10;
+        int hungry = -10;
 
         if (getHungry() == 0) {
             System.out.printf("%s 는 배고프지 않아졌어요!\n", getName());
             return;
         }
 
-        changeHungry(hugry);
+        changeHungry(hungry);
 
         System.out.printf("""
                         %s 가 밥을 먹었어요!
@@ -25,7 +35,7 @@ public class Dog extends Animal {
                         현재 배고픔 수치 : %d
                         """
                 , getName()
-                , hugry * -1
+                , hungry * -1
                 , getHungry());
     }
 
@@ -66,5 +76,19 @@ public class Dog extends Animal {
                 , getHappy()
                 , getHungry()
         );
+    }
+
+    @Override
+    public void changeHappy(int happy) {
+        this.happy += happy;
+        if (this.happy < 0) this.happy = 0;
+        if (this.happy > 100) this.happy = 100;
+    }
+
+    @Override
+    public void changeHungry(int hungry) {
+        this.hungry += hungry;
+        if (this.hungry < 0) this.hungry = 0;
+        if (this.hungry > 100) this.hungry = 100;
     }
 }

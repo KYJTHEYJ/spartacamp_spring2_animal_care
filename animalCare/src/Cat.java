@@ -1,4 +1,14 @@
-public class Cat extends Animal {
+public class Cat extends Animal implements Zoo {
+    private int happy;
+    private int hungry;
+
+    public int getHappy() {
+        return happy;
+    }
+
+    public int getHungry() {
+        return hungry;
+    }
 
     public Cat(String name, int age) {
         super(name, age);
@@ -53,5 +63,32 @@ public class Cat extends Animal {
                 , getHappy()
                 , getHungry()
         );
+    }
+
+    @Override
+    public void showStatus() {
+        System.out.printf("""
+                        %s 의 상태에요!
+                        현재 행복도 : %d
+                        현재 배고픔 : %d
+                        """
+                , getName()
+                , getHappy()
+                , getHungry()
+        );
+    }
+
+    @Override
+    public void changeHappy(int happy) {
+        this.happy += happy;
+        if (this.happy < 0) this.happy = 0;
+        if (this.happy > 100) this.happy = 100;
+    }
+
+    @Override
+    public void changeHungry(int hungry) {
+        this.hungry += hungry;
+        if (this.hungry < 0) this.hungry = 0;
+        if (this.hungry > 100) this.hungry = 100;
     }
 }
