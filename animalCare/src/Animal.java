@@ -1,4 +1,4 @@
-public class Animal implements Zoo {
+public class Animal {
     private final String name;
     private final int age;
     private int hungry;
