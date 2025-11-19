@@ -11,60 +11,56 @@ classDiagram
 direction BT
 class Animal {
   + Animal(String, int) 
+  - String name
   - int age
   - int happy
-  - String name
   - int hungry
-  # changeHungry(int) void
-  + eat() void
-  + showStatus() void
-  + cry() void
-  + play() void
   # changeHappy(int) void
-   String name
-   int hungry
-   int happy
-   int age
+  + getHappy() int
+  + getName() String
+  # changeHungry(int) void
+  + play() void
+  + eat() void
+  + cry() void
+  + showStatus() void
+  + getAge() int
+  + getHungry() int
 }
 class Cat {
   + Cat(String, int) 
-  + eat() void
-  + play() void
   + cry() void
+  + eat() void
+  + showStatus() void
+  + play() void
 }
 class Dog {
   + Dog(String, int) 
+  + play() void
+  + eat() void
   + showStatus() void
   + cry() void
-  + eat() void
-  + play() void
-}
-class Main {
-  + Main() 
-  + listenCry(List~Animal~, Scanner) void
-  + showAnimalList(List~Animal~) void
-  + main(String[]) void
-  + inputMenuNumberCheck(Scanner) int
-  + inputAnimalAgeCheck(Scanner) int
-  + showStatus(List~Animal~, Scanner) void
-  + eat(List~Animal~, Scanner) void
-  + play(List~Animal~, Scanner) void
-  + animalDuplicateCheck(Animal, List~Animal~) boolean
-  + inputAnimalList(String, int, int, List~Animal~) void
-  + selectListedAnimal(List~Animal~, Scanner) int
-  + inputAnimalSpecies(Scanner) int
-  + inputAnimalNameCheck(Scanner) String
 }
 class Zoo {
-<<Interface>>
-  + eat() void
-  + play() void
-  + showStatus() void
+  + Zoo() 
+  ~ HashMap~Integer, String~ animalSpeciesNumList
+  ~ List~Integer~ menuNumList
+  + inputAnimalSpecies(Scanner) int
+  + main(String[]) void
+  + inputMenuNumberCheck(Scanner) int
+  + showStatus(List~Animal~, Scanner) void
+  + inputAnimalAgeCheck(Scanner) int
+  + inputAnimalList(String, int, int, List~Animal~) void
+  + eat(List~Animal~, Scanner) void
+  + listenCry(List~Animal~, Scanner) void
+  + showAnimalList(List~Animal~) void
+  + animalDuplicateCheck(Animal, List~Animal~) boolean
+  + inputAnimalNameCheck(Scanner) String
+  + play(List~Animal~, Scanner) void
+  + selectListedAnimal(List~Animal~, Scanner) int
 }
 
-Animal  ..>  Zoo 
 Cat  -->  Animal 
-Dog  -->  Animal
+Dog  -->  Animal 
 ```
 ---
 
