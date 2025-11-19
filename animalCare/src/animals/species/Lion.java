@@ -1,11 +1,11 @@
 package animals.species;
 
 import abilitys.Cryable;
-import animals.species.familys.Cat;
+import animals.species.familys.Mammal;
 import zoo.Food;
 import zoo.ZooSpecies;
 
-public class Lion extends Cat implements Cryable {
+public class Lion extends Mammal implements Cryable {
     private final Food favoriteFood = Food.MEAT;
 
     public Lion(String name, int age) {

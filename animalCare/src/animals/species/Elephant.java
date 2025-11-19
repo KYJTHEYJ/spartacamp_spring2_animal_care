@@ -1,11 +1,11 @@
 package animals.species;
 
-import abilitys.WaterShoot;
+import abilitys.WaterShootAble;
 import animals.species.familys.Mammal;
 import zoo.Food;
 import zoo.ZooSpecies;
 
-public class Elephant extends Mammal implements WaterShoot {
+public class Elephant extends Mammal implements WaterShootAble {
     private final Food favoriteFood = Food.PLANT;
 
     public Elephant(String name, int age) {

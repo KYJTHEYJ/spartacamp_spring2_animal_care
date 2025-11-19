@@ -223,7 +223,7 @@ public class Zoo {
             int listIndex = 0;
             for (Animal animal : listedAnimals) {
                 if(animal instanceof Cryable) {
-                    cryableAnimals.add(animal);
+                    cryAbleAnimals.add(animal);
                     System.out.println("동물을 번호에 맞게 선택해주세요");
                     System.out.printf("""
                                     %d. %s (%s, %d살)
@@ -245,7 +245,7 @@ public class Zoo {
                 continue;
             }
 
-            if (selectNumber > cryableAnimals.size() || selectNumber == 0 || selectNumber < 0) {
+            if (selectNumber > cryAbleAnimals.size() || selectNumber == 0 || selectNumber < 0) {
                 System.out.println("리스트에 없는 번호입니다");
                 sc.nextLine(); // 잘못된 입력 제거
                 continue;
@@ -255,7 +255,7 @@ public class Zoo {
             break;
         }
 
-        return cryableAnimals.get(selectNumber);
+        return cryAbleAnimals.get(selectNumber);
     }
     //endregion
 

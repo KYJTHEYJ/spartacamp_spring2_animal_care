@@ -1,11 +1,11 @@
 package animals.species;
 
 import abilitys.Cryable;
-import animals.species.familys.Dog;
+import animals.species.familys.Mammal;
 import zoo.Food;
 import zoo.ZooSpecies;
 
-public class Wolf extends Dog implements Cryable
+public class Wolf extends Mammal implements Cryable
 {
     private final Food favoriteFood = Food.MEAT;
 

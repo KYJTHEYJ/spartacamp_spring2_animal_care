@@ -2,7 +2,7 @@ package animals.species.familys;
 
 import zoo.ZooSpecies;
 
-public abstract class Reptile extends Animal {
+public class Reptile extends Animal {
     protected Reptile(String name, int age) {
         super(name, age);
     }

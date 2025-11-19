@@ -1,5 +1,5 @@
 package abilitys;
 
-public interface WaterShoot {
+public interface WaterShootAble {
     void waterShoot();
 }

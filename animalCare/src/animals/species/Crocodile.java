@@ -4,6 +4,7 @@ import abilitys.Swimmable;
 import animals.species.familys.Reptile;
 import zoo.Food;
 import zoo.ZooSpecies;
+import zoo.Zookeeper;
 
 public class Crocodile extends Reptile implements Swimmable {
     private final Food favoriteFood = Food.MEAT;
@@ -61,12 +62,14 @@ public class Crocodile extends Reptile implements Swimmable {
     }
 
     @Override
-    public void play() {
+    public void play(Zookeeper zookeeper) {
         int happy = 10;
 
         if(this.hungry >= 100) {
             System.out.printf("%s 는 배가 고파 놀 수 없어요!\n", name);
         }
+
+        if(zookeeper.getWellKnownAnimals().contains(this.getClass())) {}
 
         changeHappy(happy);
         changeHungry(happy);
