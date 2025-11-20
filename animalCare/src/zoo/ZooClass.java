@@ -1,9 +1,12 @@
 package zoo;
 
+import animals.species.familys.Reptile;
+
 // 동물원에서 관리하는 동물들의 강
 public enum ZooClass {
     BIRD("조류")
-    , MAMMAL("포유류");
+    , MAMMAL("포유류")
+    , REPTILE("파충류");
 
     final String krName;
 

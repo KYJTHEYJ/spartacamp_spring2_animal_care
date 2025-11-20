@@ -3,10 +3,16 @@ package animals.species;
 import abilitys.Swimmable;
 import animals.species.familys.Bird;
 import zoo.Food;
+import zoo.ZooClass;
 import zoo.ZooSpecies;
+import zoo.Zookeeper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Penguin extends Bird implements Swimmable {
     private final Food favoriteFood = Food.FISH;
+    private final List<Food> hateFood = new ArrayList<>(List.of(Food.PLANT));
 
     public Penguin(String name, int age) {
         super(name, age);
@@ -35,11 +41,16 @@ public class Penguin extends Bird implements Swimmable {
     }
 
     @Override
-    public void eat(String food) {
+    public void eat(Food food) {
         int hungry = -10;
 
         if (this.hungry == 0) {
             System.out.printf("%s 는 배고프지 않아요!\n", name);
+            return;
+        }
+
+        if(hateFood.contains(food)) {
+            System.out.printf("%s 는 %s 를 먹지 못해요!\n", name, food.getKrName());
             return;
         }
 
@@ -61,11 +72,18 @@ public class Penguin extends Bird implements Swimmable {
     }
 
     @Override
-    public void play() {
+    public void play(Zookeeper zookeeper) {
         int happy = 10;
 
         if (this.hungry >= 100) {
             System.out.printf("%s 는 배가 고파 놀 수 없어요!\n", name);
+            return;
+        }
+
+        if(zookeeper.getWellKnownClass().contains(ZooClass.BIRD)
+                || zookeeper.getWellKnownSpecies().contains(ZooSpecies.PENGUIN)) {
+            happy = happy * 2;
+            System.out.printf("%s 님과 함께라 더 즐거워요!\n", zookeeper.getName());
         }
 
         changeHappy(happy);

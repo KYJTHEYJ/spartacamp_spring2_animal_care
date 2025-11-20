@@ -1,6 +1,8 @@
 package animals.species.familys;
 
+import zoo.Food;
 import zoo.ZooSpecies;
+import zoo.Zookeeper;
 
 public abstract class Animal {
     protected final String name;
@@ -33,8 +35,8 @@ public abstract class Animal {
         if (this.hungry > 100) this.hungry = 100;
     }
 
-    public abstract void eat(String food);
-    public abstract void play();
+    public abstract void eat(Food food);
+    public abstract void play(Zookeeper zookeeper);
     public abstract void showStatus();
     public abstract ZooSpecies getSpecies();
 }

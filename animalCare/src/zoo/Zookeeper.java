@@ -1,17 +1,27 @@
 package zoo;
 
-import animals.species.familys.Animal;
-
 import java.util.List;
 
 public class Zookeeper {
-    List<Animal> wellKnownAnimals;
+    String name;
+    List<ZooClass> wellKnownClass;
+    List<ZooSpecies> wellKnownSpecies;
 
-    Zookeeper(List<Animal> wellKnownAnimals) {
-        this.wellKnownAnimals = wellKnownAnimals;
+    Zookeeper(String name, List<ZooClass> wellKnownClass, List<ZooSpecies> wellKnownSpecies) {
+        this.name = name;
+        this.wellKnownClass = wellKnownClass;
+        this.wellKnownSpecies = wellKnownSpecies;
     }
 
-    public List<Animal> getWellKnownAnimals() {
-        return wellKnownAnimals;
+    public String getName() {
+        return name;
+    }
+
+    public List<ZooClass> getWellKnownClass() {
+        return wellKnownClass;
+    }
+
+    public List<ZooSpecies> getWellKnownSpecies() {
+        return wellKnownSpecies;
     }
 }

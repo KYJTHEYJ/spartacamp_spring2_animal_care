@@ -5,6 +5,8 @@ import animals.species.familys.Animal;
 import java.util.*;
 
 // TODO : 종과 하위분류가 추가 되었되면 취급하는 동물과 먹이를 Zoo의 enum 클래스(Food, ZooSpecies) 내부에 추가할 것
+//  사육사 관리 기능, 통계보기 추가 구현 필요..
+//  기회비용 소모가 아까워 강의 수강으로 넘어가려함..
 public class Zoo {
     //region "공통 변수"
     // 메뉴 선택 리스트
@@ -275,6 +277,7 @@ public class Zoo {
     //endregion
 
     //region "놀아주기"
+    // TODO : 사육사 선택기능 추가 필요
     public static void play(List<Animal> listedAnimals, Scanner sc) {
         if (listedAnimals.isEmpty()) {
             System.out.println("등록된 동물이 없습니다");

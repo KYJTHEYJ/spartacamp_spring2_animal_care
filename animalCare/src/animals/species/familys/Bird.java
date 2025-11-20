@@ -1,6 +1,8 @@
 package animals.species.familys;
 
+import zoo.Food;
 import zoo.ZooSpecies;
+import zoo.Zookeeper;
 
 public class Bird extends Animal {
     protected Bird(String name, int age) {
@@ -8,10 +10,10 @@ public class Bird extends Animal {
     }
 
     @Override
-    public void eat(String food) {}
+    public void eat(Food food) {}
 
     @Override
-    public void play() {}
+    public void play(Zookeeper zookeeper) {}
 
     @Override
     public void showStatus() {}
